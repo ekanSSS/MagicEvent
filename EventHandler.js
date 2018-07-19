@@ -12,7 +12,7 @@ var EventHandler = EventHandler || (function(){
     /**
     * if event is not already listen, add listener on dom and create a custom event to trigger it
     *
-    * @param string event event name
+    * @param {string} event event name
     **/
     const addEvent = function(event){
         //initiate event for emit
@@ -29,9 +29,9 @@ var EventHandler = EventHandler || (function(){
     /**
     * get number of ancestor between designated ancestor and element
     *
-    * @param Node el the element to begin with
-    * @param Node parent parent to reach
-    * @return int node of element beetween el and parent
+    * @param {Node} el the element to begin with
+    * @param {Node} parent parent to reach
+    * @return {int} node of element beetween el and parent
     **/
     const getParentPos = function(el, parent){
         let i = 0;
@@ -102,10 +102,10 @@ var EventHandler = EventHandler || (function(){
     /**
     * add a function to target selector and event
     *
-    * @param string event : event name
-    * @param string selector : selector to match on handler
-    * @param callable func function to call on event
-    * @param bool unique does we need to execute function only once per element ?
+    * @param {string} event : event name
+    * @param {string} selector : selector to match on handler
+    * @param {function} function to call on event
+    * @param {bool} unique does we need to execute function only once per element ?
     */
     const add = function(event, selector, func, unique = false){
         if(
@@ -135,9 +135,9 @@ var EventHandler = EventHandler || (function(){
     /**
     * compare two function to see if they are exactly the same
     *
-    * @param callable a first function to compare
-    * @param callable b second function to compare
-    * @return bool does function are the same
+    * @param {function} a first function to compare
+    * @param {function} b second function to compare
+    * @return {bool} does function are the same
     **/
     const matchFunction = function(a, b){
         a = ''+a;
@@ -148,9 +148,10 @@ var EventHandler = EventHandler || (function(){
     /**
     * trigger designated element
     *
-    * @param string event : event name
-    * @param mixed data : data to send with element
-    * @return Object eventHandler for chaining
+    * @param {string} event : event name
+    * @param {Node} element element to dispatch event
+    * @param {mixed} data : data to send with element
+    * @return {Object} eventHandler for chaining
     **/
     self.emit = function(event, element, data){
         if(customs[event])
@@ -162,10 +163,10 @@ var EventHandler = EventHandler || (function(){
     /**
     * register handler see add
     *
-    * @param string event : event name
-    * @param string selector : selector to match on handler
-    * @param callable func function to call on event
-    * @return Object eventHandler for chaining
+    * @param {string} event : event name
+    * @param {string} selector : selector to match on handler
+    * @param {function} func function to call on event
+    * @return {Object} eventHandler for chaining
     **/
     self.on = function(event, selector, func){
         add(event, selector, func);
@@ -175,10 +176,10 @@ var EventHandler = EventHandler || (function(){
     /**
     * register handler which execute only once per element see add
     *
-    * @param string event : event name
-    * @param string selector : selector to match on handler
-    * @param callable func function to call on event
-    * @return Object eventHandler for chaining
+    * @param {string} event : event name
+    * @param {string} selector : selector to match on handler
+    * @param {function} func function to call on event
+    * @return {Object} eventHandler for chaining
     **/
     self.one = function( event, selector, func){
         add(event, selector, func, true);
@@ -188,10 +189,10 @@ var EventHandler = EventHandler || (function(){
     /**
     * remove an entry from current listener function
     *
-    * @param string event : event name
-    * @param string selector : selector to match on handler
-    * @param callable func function to call on event
-    * @return Object eventHandler for chaining
+    * @param {string} event : event name
+    * @param {string} selector : selector to match on handler
+    * @param {function} func function to call on event
+    * @return {Object} eventHandler for chaining
     **/
     self.off = function(event, selector, func){
         event.split(' ').forEach(function(event){
