@@ -6,7 +6,6 @@ var EventHandler = EventHandler || (function(){
     const self = {};
     const events = {};        // list of listener
     const customs = {};       // list of event
-    let matchesFunc = '';   // name of node.matches function (compatibilty for old browser)
     let idCount = 0;        // define id for .one event
 
     /**
@@ -66,16 +65,16 @@ var EventHandler = EventHandler || (function(){
 
             // get all function to execute
             let index = event.filter(function(val){
-                    let el = ev.srcElement[matchesFunc](val.selector) || ev.srcElement.closest(val.selector);
+                    let el = ev.target.matches(val.selector) || ev.target.closest(val.selector);
                 if(el){
                     if(el === true)
-                        el = ev.srcElement;
+                        el = ev.target;
 
                     //does function is register by one and have already executed on this element .
                     if(val.unique && val.unique[el.uniqueId])
                         return false;
 
-                    val.el = [el,getParentPos(ev.srcElement,el)];
+                    val.el = [el,getParentPos(ev.target,el)];
                     return true;
                 } else return false;
             })
@@ -104,16 +103,14 @@ var EventHandler = EventHandler || (function(){
     * init function of event handler
     **/
     const init = function(){
-        if(document.body.matches)
-            matchesFunc = 'matches';
-        else if(document.body.webkitMatchesSelector)
-            matchesFunc = 'webkitMatchesSelector';
-        else if(document.body.oMatchesSelector)
-            matchesFunc = 'oMatchesSelector';
-        else if(document.body.mozMatchesSelector)
-            matchesFunc = 'mozMatchesSelector';
-        else if(document.body.msMatchesSelector)
-            matchesFunc = 'msMatchesSelector';
+        if (Element && !Element.prototype.matches) {
+            var proto = Element.prototype;
+            proto.matches = proto.matchesSelector
+                || proto.mozMatchesSelector
+                || proto.msMatchesSelector
+                || proto.oMatchesSelector
+                || proto.webkitMatchesSelector;
+        }
     }
 
     /**

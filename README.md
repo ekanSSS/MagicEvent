@@ -45,6 +45,25 @@ All method return EventHandler object to chain all your call
     .on("click", ".clickme", myClickFunc);
   ```
 
+#### Delegate
+Delegate is automatic for all elements, so it's easy to make it !(not available for scroll event)
+```javascript
+  //register event listener with delegate
+  EventHandler.on("click", "a", myLinkClickFunc)
+  ```
+
+#### currentElement
+Due to delegate, event.currentTarget is always document, but you can use event.delegateTarget (except for scroll)
+```javascript
+  function(event){
+    //get <a> element that was click 
+    const el = event.delegateTarget;
+    //magic here
+  }
+  
+  EventHandler.on("click", "a", myLinkClickFunc)
+  ```
+
 #### Execute only once
 If you want a listener to be executed only once, use one method 
 ```javascript

@@ -3,9 +3,9 @@ var gulp = require('gulp');
 // Include plugins
 var plugins = require('gulp-load-plugins')(); // tous les plugins de package.json
 
-// Variables de chemins
-var source = './src'; // dossier de travail
-var destination = './dist'; // dossier à livrer
+// path var
+var source = './src'; // work folder
+var destination = './dist'; // distribuable folder
 
 
 
@@ -28,16 +28,12 @@ gulp.task('clean', () =>
 
 
 
-// Tâche "watch" = je surveille *less
 gulp.task('watch', function () {
   gulp.watch(source + '/*.js', ['js']);
 });
 
-// Tâche "build"
 gulp.task('build', ['clean', 'js']);
 
-// Tâche "prod" = Build + minify
 gulp.task('prod', ['build',  'minify']);
 
-// Tâche par défaut
 gulp.task('default', ['build', 'watch']);

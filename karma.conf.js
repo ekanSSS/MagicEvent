@@ -71,7 +71,7 @@ module.exports = function ( config ) {
         autoWatch: true,
 
         // start these browsers
-        browsers: ['ChromeHeadless'],
+        browsers: ['ChromeHeadless', 'FirefoxHeadless'],
 
         // set this to true when your want do to a single run, usefull to CI
         singleRun: false
