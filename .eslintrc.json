@@ -1,0 +1,10 @@
+{
+    "extends": "airbnb-base",
+    "env": {
+        "browser": true
+    },
+    "rules": {
+        "no-plusplus": 0,
+        "func-names": 0
+    }
+}

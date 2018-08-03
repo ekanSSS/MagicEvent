@@ -3,7 +3,9 @@
     "version": "1.0.0",
     "description": "Easy event handler with auto delegate and emitter",
     "scripts": {
-        "test": "karma start karma.conf.js --log-level debug"
+        "test": "karma start karma.conf.js --log-level debug",
+        "lint": "eslint src/**/*.js",
+        "fix-lint": "eslint --fix *.js src/"
     },
     "author": "Jean-Robert BERETTA <jeanrobert.beretta@gmail.com>",
     "license": "MIT",
@@ -11,6 +13,9 @@
         "babel": "^6.23.0",
         "babel-core": "^6.26.0",
         "babel-polyfill": "^6.26.0",
+        "eslint": "^4.19.1",
+        "eslint-config-airbnb-base": "^13.0.0",
+        "eslint-plugin-import": "^2.13.0",
         "gulp": "^3.9.1",
         "gulp-babel": "^7.0.0",
         "gulp-clean": "0.4.0",
@@ -25,10 +30,10 @@
         "jasmine-spec-reporter": "^4.2.1",
         "karma": "^2.0.5",
         "karma-chrome-launcher": "^2.2.0",
-        "karma-firefox-launcher": "^1.1.0",
         "karma-clear-screen-reporter": "^1.0.0",
         "karma-cli": "*",
         "karma-coverage": "^1.1.2",
+        "karma-firefox-launcher": "^1.1.0",
         "karma-jasmine": "^1.1.2",
         "karma-json-fixtures-preprocessor": "0.0.6",
         "karma-mocha-reporter": "^2.2.5",
