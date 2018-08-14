@@ -1,7 +1,7 @@
 {
-    "name": "EventHandler",
+    "name": "MagicEvent",
     "version": "1.0.0",
-    "description": "Easy event handler with auto delegate and emitter",
+    "description": "Use javascript event like your a magician",
     "scripts": {
         "test": "karma start karma.conf.js --log-level debug",
         "lint": "eslint src/**/*.js",

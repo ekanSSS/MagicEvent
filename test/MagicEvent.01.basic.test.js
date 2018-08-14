@@ -23,15 +23,15 @@ describe('Event Handler basics', function() {
 
     afterEach(function() {
         document.body.removeChild(document.getElementById('fixture'));
-        EventHandler.offAll();
+        MagicEvent.offAll();
     });
 
     it('Event Handler should be loaded', function() {
-        expect(EventHandler).toBeDefined();
+        expect(MagicEvent).toBeDefined();
     });
 
     it('you should add a working event listerner', function(){
-        EventHandler.on("click", ".test", testFunc);
+        MagicEvent.on("click", ".test", testFunc);
         const div = document.querySelector('.test');
         div.click();
 
@@ -40,7 +40,7 @@ describe('Event Handler basics', function() {
     });
 
     it('you should add a working event listerner with delegate', function(){
-        EventHandler.on("click", ".test", testFunc);
+        MagicEvent.on("click", ".test", testFunc);
         const span = document.querySelector('.text');
         span.click();
 
@@ -48,7 +48,7 @@ describe('Event Handler basics', function() {
     });
 
     it('you should add a working event listerner working once per element', function(){
-        EventHandler.on("click", ".test", testFunc)
+        MagicEvent.on("click", ".test", testFunc)
             .one("click", ".text", testFunc);
 
         const span = document.querySelector('.text');
@@ -71,14 +71,14 @@ describe('Event Handler basics', function() {
     });
 
     it('you should emit an event', function(){
-        EventHandler.on("click", ".test", testFunc)
+        MagicEvent.on("click", ".test", testFunc)
             .emit("click", ".test");
 
         expect(testVal.click).toBe(0);
     });
 
     it('you should remove an event Listener', function(){
-        EventHandler.on("click", ".test", testFunc)
+        MagicEvent.on("click", ".test", testFunc)
             .off("click", ".test", testFunc)
             .emit("click", ".test");
 
@@ -86,14 +86,14 @@ describe('Event Handler basics', function() {
     });
 
     it('you should add an event Listener on scroll', function(){
-        EventHandler.on("scroll", ".test", testFunc)
+        MagicEvent.on("scroll", ".test", testFunc)
             .emit("scroll", ".test");
 
         expect(testVal.scroll).toBe(0);
     });
 
     it('Event should not be catch when emitted on  parent or siblings', function(){
-        EventHandler.on("click", ".text:first-of-type", testFunc)
+        MagicEvent.on("click", ".text:first-of-type", testFunc)
             .emit("click", ".text:last-of-type")
             .emit("click", ".test");
 

@@ -2,7 +2,7 @@
 * Event handler functionality to simply create and trigger event
 * @author Jr BERETTA <jeanrobert.beretta@gmail.com>
 * */
-let EventHandler = window.EventHandler || (function () { //eslint-disable-line
+let MagicEvent = window.MagicEvent || (function () { //eslint-disable-line
   const self = {};
   const eventList = {}; // list of listener
   const customs = {}; // list of event
@@ -170,7 +170,7 @@ let EventHandler = window.EventHandler || (function () { //eslint-disable-line
     * @param {string} event : event name
     * @param {mixed} element css selector or html element
     * @param {mixed} data : data to send with element
-    * @return {Object} eventHandler for chaining
+    * @return {Object} MagicEvent for chaining
     * */
   self.emit = function (event, element, data) {
     if (event && element) {
@@ -194,7 +194,7 @@ let EventHandler = window.EventHandler || (function () { //eslint-disable-line
     * @param {string} events : event name
     * @param {mixed} selector css selector or html element
     * @param {function} func function to call on event
-    * @return {Object} eventHandler for chaining
+    * @return {Object} MagicEvent for chaining
     * */
   self.on = function (events, selector, func) {
     add(events, selector, func);
@@ -207,7 +207,7 @@ let EventHandler = window.EventHandler || (function () { //eslint-disable-line
     * @param {string} events : event name
     * @param {mixed} selector css selector or html element
     * @param {function} func function to call on event
-    * @return {Object} eventHandler for chaining
+    * @return {Object} MagicEvent for chaining
     * */
   self.one = function (events, selector, func) {
     add(events, selector, func, true);
@@ -220,7 +220,7 @@ let EventHandler = window.EventHandler || (function () { //eslint-disable-line
     * @param {string} events : events name
     * @param {mixed} selector css selector or html element
     * @param {function} func function to call on event
-    * @return {Object} eventHandler for chaining
+    * @return {Object} MagicEvent for chaining
     * */
   self.off = function (events, selector, func) {
     if (typeof events === 'string') {
@@ -238,7 +238,7 @@ let EventHandler = window.EventHandler || (function () { //eslint-disable-line
   /**
     * remove all event listener registered
     *
-    * @return {Object} eventHandler for chaining
+    * @return {Object} MagicEvent for chaining
     * */
   self.offAll = function () {
     Object.keys(eventList).forEach((event) => {

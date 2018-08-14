@@ -27,13 +27,13 @@ describe('Event Handler misc', function() {
 
     afterEach(function() {
         document.body.removeChild(document.getElementById('fixture'));
-        EventHandler.offAll();
+        MagicEvent.offAll();
     });
 
     it('all method could take html element', function() {
         let div = document.querySelector(".test");
         let span1 = document.querySelector(".text");
-        EventHandler.on("click", div, testFunc)
+        MagicEvent.on("click", div, testFunc)
             .one("click", span1, testFunc)
             .emit("click", span1);
 
@@ -41,7 +41,7 @@ describe('Event Handler misc', function() {
         expect(div.id).not.toBe(null)
         expect(span1.id).not.toBe(null)
 
-        EventHandler.off("click", div, testFunc)
+        MagicEvent.off("click", div, testFunc)
             .emit("click", span1);
 
         expect(testVal.length).toBe(2);
@@ -49,20 +49,20 @@ describe('Event Handler misc', function() {
 
     it('scroll event could take html element', function() {
         let div = document.querySelector(".test");
-        EventHandler.on("scroll", div, testFunc)
+        MagicEvent.on("scroll", div, testFunc)
             .emit("scroll", div);
 
         expect(testVal.length).toBe(1);
         expect(div.id).not.toBe(null)
 
-        EventHandler.emit("scroll", div);
+        MagicEvent.emit("scroll", div);
 
         expect(testVal.length).toBe(2); 
     });
 
     it('on method should take multiple events', function() {
         let div = document.querySelector(".test");
-        EventHandler.on("click hover", div, testFunc)
+        MagicEvent.on("click hover", div, testFunc)
             .emit("hover", div)
             .emit("click", div);
 
@@ -71,13 +71,13 @@ describe('Event Handler misc', function() {
 
     it('one method should take multiple events', function() {
         let div = document.querySelector(".test");
-        EventHandler.one("click hover", div, testFunc)
+        MagicEvent.one("click hover", div, testFunc)
             .emit("hover", div)
             .emit("click", div);
 
         expect(testVal.length).toBe(2);
 
-        EventHandler.emit("hover", div)
+        MagicEvent.emit("hover", div)
             .emit("click", div);
 
         expect(testVal.length).toBe(2);
@@ -85,7 +85,7 @@ describe('Event Handler misc', function() {
 
     it('off method should take multiple events', function() {
         let div = document.querySelector(".test");
-        EventHandler.on("click hover", div, testFunc)
+        MagicEvent.on("click hover", div, testFunc)
             .off("click hover", div, testFunc)
             .emit("hover", div)
             .emit("click", div);
@@ -94,21 +94,21 @@ describe('Event Handler misc', function() {
     });
 
     it('all method shoud send event handler if call with missing arguments', function (){
-        expect(EventHandler.on()).toBe(EventHandler);
-        expect(EventHandler.emit()).toBe(EventHandler);
-        expect(EventHandler.one()).toBe(EventHandler);
-        expect(EventHandler.off()).toBe(EventHandler);
+        expect(MagicEvent.on()).toBe(MagicEvent);
+        expect(MagicEvent.emit()).toBe(MagicEvent);
+        expect(MagicEvent.one()).toBe(MagicEvent);
+        expect(MagicEvent.off()).toBe(MagicEvent);
     });
 
     it('off method should not fail on remove unexisting events', function (){
         let div = document.querySelector(".test");
-        expect(EventHandler.off("tighdfghdn", div, testFunc)).toBe(EventHandler);
+        expect(MagicEvent.off("tighdfghdn", div, testFunc)).toBe(MagicEvent);
     });
 
     it('this should refer at currentTarget object (currentTarget is alway document due to delegate)', function (){
         let div = document.querySelector(".test");
 
-        EventHandler.on("click", div, testFunc)
+        MagicEvent.on("click", div, testFunc)
             .emit("click", div);
 
        expect(testVal.length).toBe(1);
@@ -119,7 +119,7 @@ describe('Event Handler misc', function() {
         let div = document.querySelector(".test");
         let span1 = document.querySelector(".text");
 
-        EventHandler.on("click", div, testFunc)
+        MagicEvent.on("click", div, testFunc)
             .on("click", span1, testFuncCancel)
             .emit("click", span1);
 
@@ -130,7 +130,7 @@ describe('Event Handler misc', function() {
     it('custom event should work', function (){
         let div = document.querySelector(".test");
 
-        EventHandler.on("customizeEvent", div, testFunc)
+        MagicEvent.on("customizeEvent", div, testFunc)
             .emit("customizeEvent", div);
 
        expect(testVal.length).toBe(1);
@@ -140,7 +140,7 @@ describe('Event Handler misc', function() {
     it('custom event should work with data', function (){
         let div = document.querySelector(".test");
 
-        EventHandler.on("customizeEvent", div, testFunc)
+        MagicEvent.on("customizeEvent", div, testFunc)
             .emit("customizeEvent", div, {test: "yeah"});
 
        expect(testVal.length).toBe(1);

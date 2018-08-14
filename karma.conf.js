@@ -11,7 +11,7 @@ module.exports = function (config) {
     files: [
       'sample/index.html',
 
-      'src/EventHandler.js',
+      'src/MagicEvent.js',
       'src/*.js',
 
       'test/*.js',
@@ -37,7 +37,7 @@ module.exports = function (config) {
       // source files, that you wanna generate coverage for
       // do not include tests or libraries
       // (these files will be instrumented by Istanbul)
-      'src/EventHandler.js': ['coverage'],
+      'src/MagicEvent.js': ['coverage'],
     },
 
     coverageReporter: {

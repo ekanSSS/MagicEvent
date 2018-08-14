@@ -9,7 +9,7 @@ const destination = './dist'; // distribuable folder
 
 
 gulp.task('js', () => gulp.src(`${source}/*.js`)
-  .pipe(plugins.concat('EventHandler.js'))
+  .pipe(plugins.concat('MagicEvent.js'))
   .pipe(plugins.babel({
     presets: ['env'],
   }))
